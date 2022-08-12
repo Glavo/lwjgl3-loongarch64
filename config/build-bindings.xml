@@ -14,12 +14,15 @@ This script is included in /config/build-definitions.xml.
 
     <!-- // ========== BINDING FLAGS ======== // -->
 
-    <property name="binding.assimp" value="true"/>
+    <condition property="binding.assimp" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
     <condition property="binding.bgfx" value="false" else="true">
-        <and>
-            <isset property="platform.windows"/>
-            <isset property="build.arch.arm"/>
-        </and>
+        <or>
+            <and>
+                <isset property="platform.windows"/>
+                <isset property="build.arch.arm"/>
+            </and>
+            <isset property="build.arch.loongarch"/>
+        </or>
     </condition>
     <property name="binding.cuda" value="true"/>
     <property name="binding.egl" value="true"/>
@@ -32,21 +35,27 @@ This script is included in /config/build-definitions.xml.
     <property name="binding.lz4" value="true"/>
     <condition property="binding.meow" value="true" else="false">
         <or>
-            <not><isset property="build.arch.arm"/></not>
+            <isset property="build.arch.x86"/>
+            <isset property="build.arch.x64"/>
             <isset property="build.arch.arm64"/>
         </or>
     </condition>
     <property name="binding.meshoptimizer" value="true"/>
     <property name="binding.nanovg" value="true"/>
-    <property name="binding.nfd" value="true"/>
+    <condition property="binding.nfd" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
     <property name="binding.nuklear" value="true"/>
     <property name="binding.odbc" value="true"/>
     <property name="binding.openal" value="true"/>
     <property name="binding.opencl" value="true"/>
     <property name="binding.opengl" value="true"/>
     <property name="binding.opengles" value="true"/>
-    <condition property="binding.openvr" value="false" else="true"><isset property="build.arch.arm"/></condition>
-    <property name="binding.openxr" value="true"/>
+    <condition property="binding.openvr" value="false" else="true">
+        <or>
+            <isset property="build.arch.arm"/>
+            <isset property="build.arch.loongarch"/>
+        </or>
+    </condition>
+    <condition property="binding.openxr" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
     <property name="binding.opus" value="true"/>
     <property name="binding.par" value="true"/>
     <condition property="binding.remotery" value="false" else="true">
@@ -56,16 +65,26 @@ This script is included in /config/build-definitions.xml.
         </and>
     </condition>
     <property name="binding.rpmalloc" value="true"/>
-    <property name="binding.shaderc" value="true"/>
-    <property name="binding.spvc" value="true"/>
-    <condition property="binding.sse" value="false" else="true"><isset property="build.arch.arm"/></condition>
+    <condition property="binding.shaderc" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
+    <condition property="binding.spvc" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
+    <condition property="binding.sse" value="false" else="true">
+        <or>
+            <isset property="build.arch.arm"/>
+            <isset property="build.arch.loongarch"/>
+        </or>
+    </condition>
     <property name="binding.stb" value="true"/>
     <property name="binding.tinyexr" value="true"/>
     <property name="binding.tinyfd" value="true"/>
-    <condition property="binding.tootle" value="false" else="true"><isset property="build.arch.arm"/></condition>
+    <condition property="binding.tootle" value="false" else="true">
+       <or>
+           <isset property="build.arch.arm"/>
+           <isset property="build.arch.loongarch"/>
+       </or>
+    </condition>
     <property name="binding.vulkan" value="true"/>
     <condition property="binding.vma" value="true" else="false"><istrue value="${binding.vulkan}"/></condition>
-    <property name="binding.xxhash" value="true"/>
+    <condition property="binding.xxhash" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
     <property name="binding.yoga" value="true"/>
     <property name="binding.zstd" value="true"/>
 
@@ -83,7 +102,12 @@ This script is included in /config/build-definitions.xml.
         <and>
             <isset property="OCULUS_SDK_PATH"/>
             <available file="${OCULUS_SDK_PATH}/LibOVR/Include/OVR_CAPI.h"/>
-            <not><isset property="build.arch.arm"/></not>
+            <not>
+                <or>
+                    <isset property="build.arch.arm"/>
+                    <isset property="build.arch.loongarch"/>
+                </or>
+            </not>
         </and>
     </condition>
 

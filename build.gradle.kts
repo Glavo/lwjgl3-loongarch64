@@ -62,6 +62,7 @@ enum class Platforms(val classifier: String) {
     LINUX("linux"),
     LINUX_ARM64("linux-arm64"),
     LINUX_ARM32("linux-arm32"),
+    LINUX_LOONGARCH64("linux_loongarch64")
     MACOS("macos"),
     MACOS_ARM64("macos-arm64"),
     WINDOWS("windows"),

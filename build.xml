@@ -1122,6 +1122,7 @@
         <element name="linux-content" optional="true"/>
         <element name="linux-arm64-content" optional="true"/>
         <element name="linux-arm32-content" optional="true"/>
+        <element name="linux-loongarch64-content" optional="true"/>
         <element name="macos-content" optional="true"/>
         <element name="macos-arm64-content" optional="true"/>
         <element name="windows-content" optional="true"/>
@@ -1151,6 +1152,9 @@
 
                 <get-release platform="linux" arch="arm32" file="lib@{native-library}.so" if:set="auto-natives"/>
                 <get-release platform="linux" arch="arm32" file="lib@{native-library}.so.git" if:set="git-revision"/>
+
+                <get-release platform="linux" arch="loongarch64" file="lib@{native-library}.so" if:set="auto-natives"/>
+                <get-release platform="linux" arch="loongarch64" file="lib@{native-library}.so.git" if:set="git-revision"/>
 
                 <get-release platform="macos" arch="x64" file="lib@{native-library}.dylib" if:set="auto-natives"/>
                 <get-release platform="macos" arch="x64" file="lib@{native-library}.dylib.git" if:set="git-revision"/>
@@ -1217,6 +1221,9 @@
                 <natives-jar name="@{name}" title="@{title}" platform="linux-arm32" path="linux/arm32" type="so">
                     <linux-arm32-content/>
                 </natives-jar>
+                <natives-jar name="@{name}" title="@{title}" platform="linux-loongarch64" path="linux/loongarch64" type="so">
+                    <linux-loongarch64-content/>
+                </natives-jar>
                 <natives-jar name="@{name}" title="@{title}" platform="macos" path="macos/x64" type="dylib">
                     <macos-content/>
                 </natives-jar>
@@ -1244,6 +1251,7 @@
         <element name="linux" optional="true"/>
         <element name="linux-arm64" optional="true"/>
         <element name="linux-arm32" optional="true"/>
+        <element name="linux-loongarch64" optional="true"/>
         <element name="macos" optional="true"/>
         <element name="macos-arm64" optional="true"/>
         <element name="windows" optional="true"/>
@@ -1267,6 +1275,7 @@
                 <linux-content><linux/></linux-content>
                 <linux-arm64-content><linux-arm64/></linux-arm64-content>
                 <linux-arm32-content><linux-arm32/></linux-arm32-content>
+                <linux-loongarch64-content><linux-loongarch64/></linux-loongarch64-content>
                 <macos-content><macos/></macos-content>
                 <macos-arm64-content><macos-arm64/></macos-arm64-content>
                 <windows-content><windows/></windows-content>
@@ -1500,6 +1509,9 @@
                 <get-release platform="linux" arch="arm32" file="libglfw.so"/>
                 <get-release platform="linux" arch="arm32" file="libglfw.so.git"/>
 
+                <get-release platform="linux" arch="loongarch64" file="libglfw.so"/>
+                <get-release platform="linux" arch="loongarch64" file="libglfw.so.git"/>
+
                 <get-release platform="macos" arch="x64" file="libglfw.dylib"/>
                 <get-release platform="macos" arch="x64" file="libglfw.dylib.git"/>
                 <get-release platform="macos" arch="x64" file="libglfw_async.dylib"/>
@@ -1578,6 +1590,9 @@
 
                 <get-release platform="linux" arch="arm32" file="libopenal.so"/>
                 <get-release platform="linux" arch="arm32" file="libopenal.so.git"/>
+
+                <get-release platform="linux" arch="loongarch64" file="libopenal.so"/>
+                <get-release platform="linux" arch="loongarch64" file="libopenal.so.git"/>
 
                 <get-release platform="macos" arch="x64" file="libopenal.dylib"/>
                 <get-release platform="macos" arch="x64" file="libopenal.dylib.git"/>
