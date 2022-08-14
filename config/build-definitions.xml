@@ -25,6 +25,7 @@ This script is included in /build.xml and /config/update-dependencies.xml.
         <or>
             <contains string="${os.arch}" substring="64"/>
             <contains string="${os.arch}" substring="armv8"/>
+            <contains string="${os.arch}" substring="loongarch64"/>
         </or>
     </condition>
     <condition property="build.arch.arm" value="true">
@@ -44,7 +45,7 @@ This script is included in /build.xml and /config/update-dependencies.xml.
     <!-- Normalize os.arch -->
     <condition property="build.arch" value="arm64"          unless:set="build.arch"><and>     <isset property="build.arch.arm"/>      <istrue  value="${is64Bit}"/></and></condition>
     <condition property="build.arch" value="arm32"          unless:set="build.arch"><and>     <isset property="build.arch.arm"/>      <isfalse value="${is64Bit}"/></and></condition>
-    <condition property="build.arch" value="loongarch64"    unless:set="build.arch"><and>     <isset property="build.arch.loongarch"/><isfalse value="${is64Bit}"/></and></condition>
+    <condition property="build.arch" value="loongarch64"    unless:set="build.arch"><and>     <isset property="build.arch.loongarch"/><istrue  value="${is64Bit}"/></and></condition>
     <condition property="build.arch" value="x64"            unless:set="build.arch"><and><not><isset property="build.arch.arm"/></not><not><isset property="build.arch.loongarch"/></not><istrue  value="${is64Bit}"/></and></condition>
     <condition property="build.arch" value="x86"            unless:set="build.arch"><and><not><isset property="build.arch.arm"/></not><not><isset property="build.arch.loongarch"/></not><isfalse value="${is64Bit}"/></and></condition>
 
