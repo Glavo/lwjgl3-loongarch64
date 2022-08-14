@@ -1057,7 +1057,7 @@
                 <mkdir dir="${release}/${module}/native/@{platform}/@{arch}/${module.path}"/>
             </quiet>
             <get
-                src="https://build.lwjgl.org/${build.type}/${platform.@{platform}.remote}/@{arch}/@{file}"
+                src="https://github.com/Glavo/lwjgl3-loongarch64/raw/natives/${build.type}/${platform.@{platform}.remote}/@{arch}/@{file}"
                 dest="${release}/${module}/native/@{platform}/@{arch}/${module.path}"
                 usetimestamp="true"
                 unless:true="${build.offline}"
