@@ -41,7 +41,7 @@ This script is included in /config/build-definitions.xml.
         </or>
     </condition>
     <property name="binding.meshoptimizer" value="true"/>
-    <property name="binding.nanovg" value="true"/>
+    <condition property="binding.nanovg" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
     <condition property="binding.nfd" value="false" else="true"><isset property="build.arch.loongarch"/></condition>
     <property name="binding.nuklear" value="true"/>
     <property name="binding.odbc" value="true"/>

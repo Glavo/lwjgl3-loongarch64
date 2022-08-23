@@ -80,6 +80,7 @@ typedef void (*FFI_CLOSURE_FUN)(ffi_cif*, void*, void**, void*);""")
         "PASCAL".enum("", "FFI_PASCAL()"),
         "REGISTER".enum("", "FFI_REGISTER()"),
         "VFP".enum("", "FFI_VFP()"),
+        "LP64".enum("", "FFI_LP64()"),
 
         "LAST_ABI".enum("", "FFI_LAST_ABI()"),
         "DEFAULT_ABI".enum("", "FFI_DEFAULT_ABI()")
@@ -97,6 +98,7 @@ typedef void (*FFI_CLOSURE_FUN)(ffi_cif*, void*, void**, void*);""")
     macro(variable=true)..private..int("FFI_PASCAL", "", void(), noPrefix = true)
     macro(variable=true)..private..int("FFI_REGISTER", "", void(), noPrefix = true)
     macro(variable=true)..private..int("FFI_VFP", "", void(), noPrefix = true)
+    macro(variable=true)..private..int("FFI_LP64", "", void(), noPrefix = true)
 
     macro(variable=true)..private..int("FFI_FIRST_ABI", "", void(), noPrefix = true)
     macro(variable=true)..private..int("FFI_LAST_ABI", "", void(), noPrefix = true)

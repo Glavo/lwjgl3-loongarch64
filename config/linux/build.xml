@@ -175,9 +175,12 @@
             </beforeCompile>
             <source>
                 <arg value="-I${src.main.rel}/libffi"/>
+                <arg value="-I${src.main.rel}/libffi/loongarch64" if:set="build.arch.loongarch64"/>
+                <arg value="-Wno-pedantic" if:set="build.arch.loongarch64"/>
                 <arg value="-I${src.main.rel}/libffi/aarch64" if:set="build.arch.arm64"/>
                 <arg value="-I${src.main.rel}/libffi/arm" if:set="build.arch.arm32"/>
-                <arg value="-I${src.main.rel}/libffi/x86" unless:set="build.arch.arm"/>
+                <arg value="-I${src.main.rel}/libffi/x86" if:set="build.arch.x86"/>
+                <arg value="-I${src.main.rel}/libffi/x86" if:set="build.arch.x64"/>
                 <arg value="-DX86_64" if:set="build.arch.x64"/> <!-- for libffi/x86/ffitarget.h -->
                 <arg value="-I${src.main.rel}/${platform}/liburing"/>
                 <arg value="-I${src.main.rel}/${platform}/liburing/include"/>
